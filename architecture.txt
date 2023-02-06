@@ -1,0 +1,40 @@
+This file try to explain the structure of the chess engine.
+A line starting with a dash (-) is a function.
+Words starting with a capital letter are classes.
+Words starting with a lower case letter are variables/attributes.
+I will probably add more to this file later to include more features when \
+I figure out how to implement them.
+
+Position:
+	x: int # x position
+	y: int # y position
+	- __str__(self) -> str # returns an algebraic notation of the position (e.g. a1, b2, c3, etc.)
+	- __repr__(self) -> str # returns an algebraic notation of the position (e.g. a1, b2, c3, etc.)
+
+Piece:
+	position: Position # position of the piece
+	color: str # color of the piece
+	name: str # name of the piece
+	value: int # value of the piece (used for evaluation)
+	has_moved: bool # has the piece moved yet?
+	just_moved: bool # was the piece just moved?
+	- get_moves(board: Board) -> list # returns a list of all possible moves
+	- __str__(self) -> str # returns the color, name and position of the piece (e.g. wPawne4)
+	- __repr__(self) -> str # returns the color, name and position of the piece (e.g. wPawne4)
+
+	Pawn, Rook, Knight, Bishop, Queen, King:
+		value = 100,  500,  300,  300,  900,  10000 (respectively)
+
+Config (not a class):
+	ROWS: int # number of rows on the board
+	COLS: int # number of columns on the board
+	WINDOW_SIZE: int # size of the window
+	SQ_SIZE: int # size of each square
+	PIECE_SIZE: int # size of each piece
+
+Dragger:
+	dragging: bool # is the user dragging a piece?
+	initial_piece: Piece # the piece that the user is dragging
+	self.mouse_position: Position # the position of the mouse in pixels
+	self.initial_position: Position # the position of the piece that the user is dragging
+	self.mouse_board_position: Position # the position of the mouse in board coordinates
