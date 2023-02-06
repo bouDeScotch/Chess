@@ -1,10 +1,13 @@
 import unittest
 
+import pygame
+
 from config import *
 from dragger import Dragger
 from move import Move
 from piece import Piece
 from position import Position
+from sound import Sound
 
 
 class MyTestCase(unittest.TestCase):
@@ -59,7 +62,18 @@ class MyTestCase(unittest.TestCase):
 		self.assertEqual(str(move), 'a1 -> b2')
 		self.assertEqual(move.start, Position(0, 0))
 		self.assertEqual(move.end, Position(1, 1))
+	
+	def test_sound(self):
+		pygame.init()
+		# Testing if the sound class works
+		sound = Sound("../assets/sounds/move.wav")
+		# Assert if the sound is played
+		sound.play()
+		if sound.sound.get_num_channels() == 0:
+			self.fail("Sound is not played")
 
 
 if __name__ == '__main__':
+	pygame.init()
+	
 	unittest.main()

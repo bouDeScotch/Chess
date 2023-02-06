@@ -24,3 +24,4 @@ class Move:
 	
 	def __eq__(self, other):
 		return self.start == other.start and self.end == other.end
+
